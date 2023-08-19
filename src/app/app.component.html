@@ -1,4 +1,4 @@
-<div class="container">
+<div class="m-6 p-6 flex justify-content-center align-items-center bg-white border-round-lg">
   <form [formGroup]="analysisForm" (ngSubmit)="analyzeText()" class="form">
     <span class="p-float-label">
       <textarea
@@ -12,33 +12,33 @@
       <label for="inputText">Enter text to be analyzed...</label>
     </span>
 
-    <div class="options">
-      <div class="mode">
-        <div class="mode-online">
+    <div class="flex my-4">
+      <div class="w-6">
+        <div class="my-1">
           <p-radioButton name="mode" value="ONLINE" formControlName="mode" inputId="online"></p-radioButton>
-          <label for="online">Online</label>
+          <label class="ml-1" for="online">Online</label>
         </div>
-        <div class="mode-offline">
+        <div class="my-1">
           <p-radioButton name="mode" value="OFFLINE" formControlName="mode" inputId="offline"></p-radioButton>
           <label for="offline">Offline</label>
         </div>
       </div>
-      <div class="option">
-        <div class="option-vowels">
+      <div class="w-6">
+        <div class="my-1">
           <p-radioButton name="option" value="VOWELS" formControlName="option" inputId="vowels"></p-radioButton>
-          <label for="vowels">Vowels</label>
+          <label class="ml-1" for="vowels"> Vowels</label>
         </div>
-        <div class="option-consonants">
+        <div class="my-1">
           <p-radioButton name="option" value="CONSONANTS" formControlName="option" inputId="consonants"></p-radioButton>
-          <label for="consonants" class="ml-2">Consonants</label>
+          <label class="ml-1" for="consonants" class="ml-2">Consonants</label>
         </div>
-        <div class="option-both">
+        <div class="my-1">
           <p-radioButton name="option" value="BOTH" formControlName="option" inputId="both"></p-radioButton>
-          <label for="both" class="ml-2">Both</label>
+          <label class="ml-1" for="both" class="ml-2">Both</label>
         </div>
       </div>
     </div>
-    <div class="action">
+    <div class="flex justify-content-center">
       <p-button label="Analyze" type="submit" [disabled]="!analysisForm.valid"></p-button>
     </div>
     </form>
