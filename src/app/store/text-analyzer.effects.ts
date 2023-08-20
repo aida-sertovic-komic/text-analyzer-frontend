@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap } from 'rxjs';
 import { TextAnalyzer } from '../models/TextAnalyzer';
 import * as TextAnalyzerActions from './text-analyzer.actions';
 
@@ -15,10 +15,13 @@ export class TestAnalyzerEffects {
       switchMap((data: TextAnalyzerActions.TextAnalysisRequestStart) => {
         return this.http.post<TextAnalyzer>(
           'http://localhost:8080',
-          data.payload
+        data.payload
         ).pipe(
             map((response: TextAnalyzer) => {
                 return new TextAnalyzerActions.AddResult({ inputText: data.payload.inputText, option: data.payload.option, mode: data.payload.mode, result: response.result})
+            }),
+            catchError((error) => {
+              return of(new TextAnalyzerActions.TextAnalysisFail(error?.error?.message))
             })
         )
       })

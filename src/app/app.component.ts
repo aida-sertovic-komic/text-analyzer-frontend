@@ -13,9 +13,8 @@ import * as fromActions from './store/text-analyzer.actions';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
-  textAnalyzers!: Observable<{ textAnalyzers: TextAnalyzer[]}>;
-  private subscription!: Subscription;
+export class AppComponent implements OnInit {
+  textAnalyzers$!: Observable<{ textAnalyzers: TextAnalyzer[], errorMessage: string}>;
 
   analysisForm: FormGroup = new FormGroup({
     inputText: new FormControl('', Validators.required),
@@ -24,11 +23,11 @@ export class AppComponent implements OnInit, OnDestroy {
   });
 
 
-  constructor(private textAnalyzerService: TextAnalyzerService, private store: Store<{ textAnalyzer: { textAnalyzers: TextAnalyzer[]}}>){
+  constructor(private textAnalyzerService: TextAnalyzerService, private store: Store<{ textAnalyzer: { textAnalyzers: TextAnalyzer[], errorMessage: string}}>){
   }
 
   ngOnInit(): void {
-    this.textAnalyzers = this.store.select('textAnalyzer');
+    this.textAnalyzers$ = this.store.select('textAnalyzer');
   }
 
   public analyzeText(){
@@ -42,7 +41,5 @@ export class AppComponent implements OnInit, OnDestroy {
    }
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+  
 }

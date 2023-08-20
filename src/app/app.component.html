@@ -73,7 +73,13 @@
   </form>
 </div>
 
-<div *ngFor="let textAnalyzer of (textAnalyzers | async)?.textAnalyzers" class="mx-6 my-2">
+<div *ngIf="(textAnalyzers$ | async)?.errorMessage">
+<p-card>
+  <p class="text-red-500">{{(textAnalyzers$ | async)?.errorMessage}}</p>
+</p-card>
+</div>
+
+<div *ngFor="let textAnalyzer of (textAnalyzers$ | async)?.textAnalyzers" class="mx-6 my-2">
   <p-card>
     <div class="block mb-2">
       <p-badge value="{{textAnalyzer?.mode}}" severity="{{textAnalyzer?.mode === 'ONLINE' ? 'success' : 'danger'}}" class="mr-1"></p-badge>
