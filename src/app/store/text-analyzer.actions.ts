@@ -1,7 +1,11 @@
 import { Action } from '@ngrx/store';
+import { TextAnalyzer } from '../models/TextAnalyzer';
 
-export const TEXT_ANALYZE = 'TEXT_ANALYZE';
+export const ADD_RESULT = 'ADD_RESULT';
 
-export class TextAnalyzer implements Action {
-  readonly type = TEXT_ANALYZE;
+export class AddResult implements Action {
+  readonly type = ADD_RESULT;
+  constructor(public payload: TextAnalyzer){}
 }
+
+export type TextAnalyzerActions = AddResult;

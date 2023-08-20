@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { RadioButtonModule } from 'primeng/radiobutton';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { CheckboxModule } from 'primeng/checkbox';
-import { ButtonModule } from 'primeng/button';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { StoreModule } from '@ngrx/store';
-import { textAnalysisReducer } from './store/text-analyzer.reducer';
+import { reducers } from './store';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { textAnalysisReducer } from './store/text-analyzer.reducer';
     ButtonModule,
     RadioButtonModule,
     FormsModule,
-    StoreModule.forRoot({textAnalyzer: textAnalysisReducer}, {})
+    StoreModule.forRoot(reducers)
   ],
   providers: [],
   bootstrap: [AppComponent]

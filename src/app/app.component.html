@@ -20,7 +20,7 @@
         </div>
         <div class="my-1">
           <p-radioButton name="mode" value="OFFLINE" formControlName="mode" inputId="offline"></p-radioButton>
-          <label for="offline">Offline</label>
+          <label class="ml-1" for="offline">Offline</label>
         </div>
       </div>
       <div class="w-6">
@@ -42,4 +42,9 @@
       <p-button label="Analyze" type="submit" [disabled]="!analysisForm.valid"></p-button>
     </div>
     </form>
+</div>
+<div *ngFor="let text of (textAnalyzers | async)?.textAnalyzers">
+  <div *ngFor="let key of text.result | keyvalue">
+    {{ key.key}}: {{ key.value}}
+  </div>
 </div>

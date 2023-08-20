@@ -2,7 +2,7 @@ import { AnalysisModeEnum } from "./AnalysisModeEnum";
 import { TextAnalyzerInput } from "./TextAnalyzerInput";
 
 export interface TextAnalyzer {
-    input: TextAnalyzerInput;
-    analysisResult: {[key: string]: number};
+    input?: TextAnalyzerInput;
     mode?: AnalysisModeEnum;
+    result: {[key: string]: number};
 }
