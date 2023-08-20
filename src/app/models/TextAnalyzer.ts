@@ -1,8 +1,9 @@
 import { AnalysisModeEnum } from "./AnalysisModeEnum";
-import { TextAnalyzerInput } from "./TextAnalyzerInput";
+import { AnalysisOptionEnum } from "./AnalysisOptionEnum";
 
 export interface TextAnalyzer {
-    input?: TextAnalyzerInput;
+    inputText?: string;
+    option?: AnalysisOptionEnum;
     mode?: AnalysisModeEnum;
-    result: {[key: string]: number};
+    result?: {[key: string]: number};
 }

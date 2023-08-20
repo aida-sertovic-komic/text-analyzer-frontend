@@ -1,13 +1,14 @@
-import { defaultUrlMatcher } from "@angular/router";
 import { TextAnalyzer } from "../models/TextAnalyzer";
 import * as Actions from './text-analyzer.actions';
 
 export interface TextAnalyzerState {
     textAnalyzers: TextAnalyzer[];
+    errorMessage: string;
 }
 
 const initialState: TextAnalyzerState = {
-    textAnalyzers: []
+    textAnalyzers: [],
+    errorMessage: ''
 }
 
 export function textAnalysisReducer(state : TextAnalyzerState = initialState, action: Actions.TextAnalyzerActions): TextAnalyzerState {
@@ -16,6 +17,11 @@ export function textAnalysisReducer(state : TextAnalyzerState = initialState, ac
             return {
                 ...state,
                 textAnalyzers: [action.payload, ...state.textAnalyzers]
+            }
+        case Actions.TEXT_ANALYSIS_FAIL:
+            return {
+                ...state,
+                errorMessage: action.payload
             }
 
             default:

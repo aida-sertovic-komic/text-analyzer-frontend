@@ -5,7 +5,6 @@ import { Observable, Subscription } from 'rxjs';
 import { AnalysisModeEnum } from './models/AnalysisModeEnum';
 import { AnalysisOptionEnum } from './models/AnalysisOptionEnum';
 import { TextAnalyzer } from './models/TextAnalyzer';
-import { TextAnalyzerInput } from './models/TextAnalyzerInput';
 import { TextAnalyzerService } from './service/text-analyzer.service';
 import * as fromActions from './store/text-analyzer.actions';
 
@@ -33,14 +32,13 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public analyzeText(){
-  const input: TextAnalyzerInput = this.analysisForm.value;
+  const input: TextAnalyzer = this.analysisForm.value;
    if(this.analysisForm.get('mode')?.value === AnalysisModeEnum.OFFLINE){
-     let result = this.textAnalyzerService.analyzeText(input);
-     this.store.dispatch(new fromActions.AddResult(result));
+     const result = this.textAnalyzerService.analyzeText(input);
+     this.store.dispatch(new fromActions.AddResult({ ...input, ...result}));
    }
    else  {
-    // dispatch action for http connection
-    console.log('ONLINE')
+    this.store.dispatch(new fromActions.TextAnalysisRequestStart(input))
    }
   }
 

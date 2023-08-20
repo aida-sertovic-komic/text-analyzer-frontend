@@ -10,6 +10,12 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { reducers } from './store';
+import { CardModule } from 'primeng/card';
+import { CommonModule } from '@angular/common';
+import { BadgeModule } from 'primeng/badge';
+import { EffectsModule } from '@ngrx/effects';
+import { TestAnalyzerEffects } from './store/text-analyzer.effects';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,14 +23,18 @@ import { reducers } from './store';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
-    ButtonModule,
+    ButtonModule,CardModule,
     ReactiveFormsModule,
     InputTextareaModule,
     CheckboxModule,
+    BadgeModule,
     ButtonModule,
     RadioButtonModule,
+    HttpClientModule,
     FormsModule,
+    EffectsModule.forRoot([TestAnalyzerEffects]),
     StoreModule.forRoot(reducers)
   ],
   providers: [],
