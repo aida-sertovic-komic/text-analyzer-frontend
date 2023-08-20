@@ -13,17 +13,23 @@ export class TestAnalyzerEffects {
     this.actions$.pipe(
       ofType(TextAnalyzerActions.TEXT_ANALYSIS_REQUEST_START),
       switchMap((data: TextAnalyzerActions.TextAnalysisRequestStart) => {
-        return this.http.post<TextAnalyzer>(
-          'http://localhost:8080',
-        data.payload
-        ).pipe(
+        return this.http
+          .post<TextAnalyzer>('http://localhost:8080', data.payload)
+          .pipe(
             map((response: TextAnalyzer) => {
-                return new TextAnalyzerActions.AddResult({ inputText: data.payload.inputText, option: data.payload.option, mode: data.payload.mode, result: response.result})
+              return new TextAnalyzerActions.AddTextAnalysisResult({
+                inputText: data.payload.inputText,
+                option: data.payload.option,
+                mode: data.payload.mode,
+                result: response.result,
+              });
             }),
             catchError((error) => {
-              return of(new TextAnalyzerActions.TextAnalysisFail(error?.error?.message))
+              return of(
+                new TextAnalyzerActions.TextAnalysisFail(error?.error?.message)
+              );
             })
-        )
+          );
       })
     )
   );

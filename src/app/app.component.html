@@ -1,5 +1,5 @@
 <div class="m-6 p-6 flex justify-content-center align-items-center bg-white border-round-lg">
-  <form [formGroup]="analysisForm" (ngSubmit)="analyzeText()" class="form">
+  <form [formGroup]="analysisForm" (ngSubmit)="analyzeText()">
     <span class="p-float-label">
       <textarea
         id="inputText"
@@ -33,6 +33,7 @@
           <label class="ml-1" for="offline">Offline</label>
         </div>
       </div>
+
       <div class="w-6">
         <div class="my-1">
           <p-radioButton
@@ -63,6 +64,7 @@
         </div>
       </div>
     </div>
+
     <div class="flex justify-content-center">
       <p-button
         label="Analyze"
@@ -74,9 +76,9 @@
 </div>
 
 <div *ngIf="(textAnalyzers$ | async)?.errorMessage">
-<p-card>
-  <p class="text-red-500">{{(textAnalyzers$ | async)?.errorMessage}}</p>
-</p-card>
+  <p-card>
+    <p class="text-red-500">{{(textAnalyzers$ | async)?.errorMessage}}</p>
+  </p-card>
 </div>
 
 <div *ngFor="let textAnalyzer of (textAnalyzers$ | async)?.textAnalyzers" class="mx-6 my-2">
@@ -85,6 +87,7 @@
       <p-badge value="{{textAnalyzer?.mode}}" severity="{{textAnalyzer?.mode === 'ONLINE' ? 'success' : 'danger'}}" class="mr-1"></p-badge>
       <p-badge value="{{textAnalyzer?.option}}"></p-badge>
     </div>
+
     <div class="block font-italic h-3rem overflow-y-auto text bg-blue-50 p-2 mb-2 border-round-lg">{{ textAnalyzer.inputText }}</div>
     <p *ngFor="let key of textAnalyzer.result | keyvalue" class="m-0 font-bold">
       {{ key.key | uppercase }}: {{ key.value }}
