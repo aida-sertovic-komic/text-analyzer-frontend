@@ -1,6 +1,20 @@
 # TextAnalyzerFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.9.
+This is the frontend part for the Text Analyzer app, and you can find the backend part here: [Backend for text analyzer app](https://github.com/aida-sertovic-komic/text-analyzer-backend).
+
+## Get started
+
+Follow these steps to run the project locally:
+
+1. Go to [Backend for text analyzer app](https://github.com/aida-sertovic-komic/text-analyzer-backend) and follow the instructions there
+2. Clone the project by typing the command in your terminal: `git clone https://github.com/aida-sertovic-komic/text-analyzer-frontend.git`
+3. Navigate into the project root folder: `cd text-analyzer-frontend`
+4. Install the necessary dependencies by running: `npm install`
+5. Run `ng serve` to start the development server
+6. Navigate to `http://localhost:4200/`
+7. Analyze your text
+
+Find additional and more described Angular CLI commands below.
 
 ## Development server
 
